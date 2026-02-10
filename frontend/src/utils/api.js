@@ -1,7 +1,17 @@
 import axios from 'axios';
 
+// Helper to sanitize base URL
+const getBaseUrl = () => {
+  let url = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  // Remove trailing slash if present to avoid double slashes
+  if (url.endsWith('/')) {
+    url = url.slice(0, -1);
+  }
+  return url;
+};
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000',
+  baseURL: getBaseUrl(),
   headers: {
     'Content-Type': 'application/json',
   },
@@ -14,9 +24,12 @@ api.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+    // Debug logging
+    console.log(`API Request: ${config.method?.toUpperCase()} ${config.url}`);
     return config;
   },
   (error) => {
+    console.error('API Request Error:', error);
     return Promise.reject(error);
   }
 );
@@ -25,10 +38,19 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
+    console.error('API Response Error:', error.response?.status, error.response?.data);
+
+    // Only redirect on 401 if we are NOT already on the login page to avoid loops
     if (error.response?.status === 401) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      window.location.href = '/login';
+      const isLoginPage = window.location.pathname === '/login';
+      const isRegisterPage = window.location.pathname === '/register';
+
+      if (!isLoginPage && !isRegisterPage) {
+        console.warn('Unauthorized - Redirecting to login');
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.href = '/login';
+      }
     }
     return Promise.reject(error);
   }
