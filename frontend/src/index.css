@@ -4,8 +4,8 @@
 
 @layer base {
   body {
-    @apply bg-background text-gray-100 font-sans antialiased text-base selection:bg-primary selection:text-white h-screen overflow-hidden;
-    background-image: 
+    @apply bg-background text-gray-100 font-sans antialiased text-base selection:bg-primary selection:text-white min-h-screen overflow-x-hidden;
+    background-image:
       radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
       radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.15) 0px, transparent 50%),
       radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.15) 0px, transparent 50%),
@@ -15,11 +15,12 @@
 }
 
 @layer components {
+
   /* Glassmorphism Utilities */
   .glass-panel {
     @apply bg-surface/50 backdrop-blur-xl border border-white/10 shadow-xl rounded-2xl;
   }
-  
+
   .glass-card {
     @apply bg-surface/60 backdrop-blur-lg border border-white/5 shadow-lg rounded-xl hover:bg-surface/70 transition-all duration-300;
   }
@@ -28,19 +29,19 @@
   .btn {
     @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background disabled:opacity-50 disabled:cursor-not-allowed;
   }
-  
+
   .btn-primary {
     @apply btn bg-gradient-to-r from-primary to-violet-600 text-white shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5;
   }
-  
+
   .btn-secondary {
     @apply btn bg-surface border border-white/10 text-gray-300 hover:bg-white/5 focus:ring-gray-500;
   }
-  
+
   .btn-danger {
     @apply btn bg-gradient-to-r from-danger to-red-600 text-white shadow-lg shadow-danger/25 hover:shadow-danger/40;
   }
-  
+
   .btn-accent {
     @apply btn bg-gradient-to-r from-accent to-cyan-600 text-white shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:-translate-y-0.5;
   }
@@ -49,7 +50,7 @@
   .input {
     @apply w-full px-4 py-3 bg-surface/50 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all;
   }
-  
+
   .label {
     @apply block text-sm font-medium text-gray-400 mb-1;
   }
@@ -58,7 +59,7 @@
   .card {
     @apply glass-card p-6;
   }
-  
+
   .page-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
   }
@@ -67,11 +68,11 @@
   .table-row-glass {
     @apply border-b border-white/5 hover:bg-white/5 transition-colors;
   }
-  
+
   .table-head-glass {
     @apply px-6 py-3 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider;
   }
-  
+
   .table-cell-glass {
     @apply px-6 py-4 whitespace-nowrap text-sm text-gray-300;
   }
@@ -80,20 +81,32 @@
   .animate-slide-up {
     animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
-  
+
   .animate-fade-in {
     animation: fadeIn 0.3s ease-out forwards;
   }
 }
 
 @keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 /* Scrollbar */

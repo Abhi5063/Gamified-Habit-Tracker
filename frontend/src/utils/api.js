@@ -38,7 +38,14 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    console.error('API Response Error:', error.response?.status, error.response?.data);
+    // Detailed error logging
+    if (error.response) {
+      console.error('API Error Status:', error.response.status);
+      console.error('API Error Data:', JSON.stringify(error.response.data, null, 2));
+      console.error('API Error Message:', error.response.data?.message || 'Unknown error');
+    } else {
+      console.error('Network/Server Error:', error.message);
+    }
 
     // Only redirect on 401 if we are NOT already on the login page to avoid loops
     if (error.response?.status === 401) {
