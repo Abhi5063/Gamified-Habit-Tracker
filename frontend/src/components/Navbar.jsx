@@ -1,9 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
-import { Home, Table, BarChart3, LogOut } from 'lucide-react'
-
-import { Link, useLocation } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth'
 import { Home, Table, BarChart3, LogOut, Cpu } from 'lucide-react'
 
 function Navbar() {
@@ -40,8 +36,8 @@ function Navbar() {
                     key={item.path}
                     to={item.path}
                     className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 ${isActive(item.path)
-                        ? 'bg-primary/20 text-white shadow-lg shadow-primary/10'
-                        : 'text-gray-400 hover:text-white hover:bg-white/5'
+                      ? 'bg-primary/20 text-white shadow-lg shadow-primary/10'
+                      : 'text-gray-400 hover:text-white hover:bg-white/5'
                       }`}
                   >
                     <Icon size={18} className={isActive(item.path) ? 'text-primary' : ''} />
