@@ -5,6 +5,8 @@ A beautiful, feature-rich habit tracking application built with React, Node.js, 
 ![Habit Tracker](https://img.shields.io/badge/Stack-MERN-success)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
+### 🚀 Live Demo: [https://habit-tracker-frontend-ivvm.onrender.com](https://habit-tracker-frontend-ivvm.onrender.com)
+
 ## ✨ Features
 
 ### 🔐 Authentication
